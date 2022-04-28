@@ -6,8 +6,13 @@ from model import sentiment_pipeline
 
 # load model
 sentiment_pipeline = pipeline("sentiment-analysis")
-# load the dataset
-df = pd.read_csv("chrome_reviews.csv")
+# Collects user input features into dataframe
+uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+if uploaded_file is not None:
+    input_df = pd.read_csv(uploaded_file)
+else:
+  # load the dataset
+  df = pd.read_csv("chrome_reviews.csv")
 
 # function to return sentiment
 def return_sentiment(data):
